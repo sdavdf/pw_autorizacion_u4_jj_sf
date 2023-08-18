@@ -22,7 +22,7 @@ public class JwtUtils {
 	@Value("${app.jwt.expiration.ms}")
 	private int jwtExpiration;
 	
-	public String generateJwtToken(Authentication Authentication, String nombre) {
+	public String generateJwtToken(String nombre) {
 		
 		LOG.info("Semilla: " + jwtSecret +"Tiempo: "+jwtExpiration);
 		return Jwts.builder().setSubject(nombre).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + this.jwtExpiration)).signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
